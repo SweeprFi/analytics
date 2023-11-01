@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const assetRoutes = require('./src/routes/asset');
 const sweepRoutes = require('./src/routes/sweep');
-const sweeprRoutes = require('./src/routes/sweepr');
+// const sweeprRoutes = require('./src/routes/sweepr');
 
 const app = express();
 const port = process.env.PORT || 3000;

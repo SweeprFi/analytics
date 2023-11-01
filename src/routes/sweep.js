@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { Multicall } = require('ethereum-multicall');
 
-const { networks, RPCs, addresses } = require("../utils/constants");
+const { networks } = require("../utils/constants");
+const Provider = require("../contracts/provider");
 const Sweep = require("../contracts/sweep");
-const sweep = new Sweep(addresses.sweep);
+
+const provider = new Provider();
+const sweep = new Sweep(provider);
 
 router.get('/sweep', async (req, res) => {
     try {
         const response = {};
         const resposnses = await Promise.all(networks.map(async (net) => {
-            var mc = new Multicall({ nodeUrl: RPCs[net], tryAggregate: true });
-            return { [`${net}`]: await sweep.fetchData(mc) };
+            return { [`${net}`]: await sweep.fetchData(net) };
         }));
 
         resposnses.forEach(resp => {
@@ -27,9 +28,7 @@ router.get('/sweep', async (req, res) => {
 
 router.get('/sweep/:network', async (req, res) => {
     try {
-        const rpc = RPCs[req.params.network];
-        const mc = new Multicall({ nodeUrl: rpc, tryAggregate: true });
-        const response = await sweep.fetchData(mc);
+        const response = await sweep.fetchData(req.params.network);
         res.json({ response });
     } catch (error) {
         res.json({ error: error.message });
@@ -40,7 +39,6 @@ router.get('/sweep-allowance', async (req, res) => {
     try {
         const { network, owner, spender } = req.query;
         const response = await sweep.getAllowance(network, owner, spender);
-        console.log(response);
         res.json({ response });
     } catch (error) {
         res.json({ error: error.message });

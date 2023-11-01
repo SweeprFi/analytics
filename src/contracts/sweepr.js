@@ -1,20 +1,27 @@
 const { ethers } = require("ethers");
 const sweeprABI = require("../abis/sweepr.json");
-const { sweeprRequestedData, keys } = require("../utils/constants");
+const { sweeprRequestedData, addresses } = require("../utils/constants");
 
 class Sweepr {
-  constructor(address) {
+  constructor(provider) {
     this.abi = sweeprABI;
-    this.address = address;
+    this.provider = provider
+    this.address = addresses.sweepr;
   }
 
-  async fetchData (multicall) {
+  sweepr(network) {
+    const provider = this.provider.getAlchemyProvider(network);
+    return new ethers.Contract(this.address, this.abi, provider);
+  }
+
+  async fetchData(network) {
+    const multicall = this.provider.getMulticall(network);
     const callInfo = {
       reference: 'sweepr',
       contractAddress: this.address,
       abi: this.abi,
       calls: sweeprRequestedData.map(data => {
-        return { reference: data+'C', methodName: data }
+        return { reference: data + 'C', methodName: data }
       })
     }
 
@@ -27,16 +34,14 @@ class Sweepr {
     return result;
   }
 
-  async getAllowance (network, owner, spender) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweepr = new ethers.Contract(this.address, this.abi, provider);
+  async getAllowance(network, owner, spender) {
+    const sweepr = this.sweepr(network);
     const allowance = await sweepr.allowance(owner, spender);
     return allowance.toString();
   }
 
-  async getBalance (network, account) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweepr = new ethers.Contract(this.address, this.abi, provider);
+  async getBalance(network, account) {
+    const sweepr = this.sweepr(network);
     const balance = await sweepr.balanceOf(account);
     return balance.toString();
   }

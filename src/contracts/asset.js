@@ -2,17 +2,19 @@ const assetABI = require("../abis/asset.json");
 const { assetRequestedData } = require("../utils/constants");
 
 class Asset {
-  constructor() {
+  constructor(provider) {
     this.abi = assetABI;
+    this.provider = provider;
   }
 
-  async fetchData (multicall, address) {
+  async fetchData(network, address) {
+    const multicall = this.provider.getMulticall(network);
     const callInfo = {
       reference: 'stabilizer',
       contractAddress: address,
       abi: this.abi,
       calls: assetRequestedData.map(data => {
-        return { reference: data+'C', methodName: data }
+        return { reference: data + 'C', methodName: data }
       })
     }
 

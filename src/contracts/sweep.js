@@ -1,20 +1,27 @@
 const { ethers } = require("ethers");
 const sweepABI = require("../abis/sweep.json");
-const { sweepRequestedData, keys } = require("../utils/constants");
+const { sweepRequestedData, addresses } = require("../utils/constants");
 
 class Sweep {
-  constructor(address) {
+  constructor(provider) {
     this.abi = sweepABI;
-    this.address = address;
+    this.provider = provider;
+    this.address = addresses.sweep;
   }
 
-  async fetchData (multicall) {
+  sweep(network) {
+    const provider = this.provider.getAlchemyProvider(network);
+    return new ethers.Contract(this.address, this.abi, provider);
+  }
+
+  async fetchData(network) {
+    const multicall = this.provider.getMulticall(network);
     const callInfo = {
       reference: 'sweep',
       contractAddress: this.address,
       abi: this.abi,
       calls: sweepRequestedData.map(data => {
-        return { reference: data+'C', methodName: data }
+        return { reference: data + 'C', methodName: data }
       })
     }
 
@@ -27,30 +34,26 @@ class Sweep {
     return result;
   }
 
-  async getAllowance (network, owner, spender) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweep = new ethers.Contract(this.address, this.abi, provider);
+  async getAllowance(network, owner, spender) {
+    const sweep = this.sweep(network);
     const allowance = await sweep.allowance(owner, spender);
     return { allowance: allowance.toString() }
   }
 
-  async getBalance (network, account) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweep = new ethers.Contract(this.address, this.abi, provider);
+  async getBalance(network, account) {
+    const sweep = this.sweep(network);
     const balance = await sweep.balanceOf(account);
     return { balance: balance.toString() }
   }
 
-  async getMinters (network) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweep = new ethers.Contract(this.address, this.abi, provider);
+  async getMinters(network) {
+    const sweep = this.sweep(network);
     const minters = await sweep.getMinters();
     return { minters };
   }
 
-  async getMinter (network, account) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweep = new ethers.Contract(this.address, this.abi, provider);
+  async getMinter(network, account) {
+    const sweep = this.sweep(network);
     const minter = await sweep.minters(account);
     return {
       maxAmount: minter[0].toString(),
@@ -60,9 +63,8 @@ class Sweep {
     };
   }
 
-  async validMinter (network, minter) {
-    const provider = new ethers.AlchemyProvider(network, keys[network])
-    const sweep = new ethers.Contract(this.address, this.abi, provider);
+  async validMinter(network, minter) {
+    const sweep = this.sweep(network);
     const isValid = await sweep.isValidMinter(minter);
     return isValid;
   }
