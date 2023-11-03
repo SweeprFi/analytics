@@ -1,9 +1,3 @@
-const networks = [
-  "mainnet",
-  "arbitrum",
-  "optimism"
-]
-
 const addresses = {
   sweep: "0xB88a5Ac00917a02d82c7cd6CEBd73E2852d43574",
   sweepr: "0x89B1e7068bF8E3232dD8f16c35cAc45bDA584f4E"
@@ -80,7 +74,6 @@ const supportedNetworks = {
 }
 
 module.exports = {
-  networks,
   addresses,
   sweepRequestedData,
   sweeprRequestedData,

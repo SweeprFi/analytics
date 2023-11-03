@@ -1,14 +1,16 @@
 {
-  "name": "sweep-analytics",
+  "name": "sweepr-analytics",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Package to fetch data from the Sweep protocol",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SweeprFi/sweepr-analytics.git"
+  },
+  "keywords": ["sweep", "sweepr"],
   "author": "Sweep Team",
   "license": "ISC",
   "dependencies": {
