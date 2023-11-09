@@ -18,8 +18,8 @@ class Provider {
   }
 
   setProvider(name, key) {
-    if (!!supportedNetworks[key]) {
-      this.rpcsProviders[name] = supportedNetworks[key] + key;
+    if (!!supportedNetworks[name]) {
+      this.rpcsProviders[name] = supportedNetworks[name].alchemy + key;
       this.alchemyProviders[name] = new ethers.AlchemyProvider(name, key);
     }
   }
