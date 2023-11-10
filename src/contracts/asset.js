@@ -1,6 +1,6 @@
 const assetABI = require("../abis/asset.json");
 const { safeGet } = require("../utils/helper");
-const { assetRequestedData } = require("../utils/constants");
+const { assetRequestedData } = require("../utils/data");
 
 class Asset {
   constructor(provider) {

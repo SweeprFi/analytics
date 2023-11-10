@@ -1,7 +1,9 @@
 const { ethers } = require("ethers");
+
 const sweeprABI = require("../abis/sweepr.json");
+const { addresses } = require("../utils/constants");
 const { format, safeGet } = require("../utils/helper");
-const { sweeprRequestedData, addresses } = require("../utils/constants");
+const { sweeprRequestedData } = require("../utils/data");
 
 class Sweepr {
   constructor(provider) {
