@@ -1,4 +1,5 @@
 const assetABI = require("../abis/asset.json");
+const { safeGet } = require("../utils/helper");
 const { assetRequestedData } = require("../utils/constants");
 
 class Asset {
@@ -9,11 +10,12 @@ class Asset {
 
   async fetchData(network, address) {
     const multicall = this.provider.getMulticall(network);
+    const keys = Object.keys(assetRequestedData);
     const callInfo = {
       reference: 'stabilizer',
       contractAddress: address,
       abi: this.abi,
-      calls: assetRequestedData.map(data => {
+      calls: keys.map(data => {
         return { reference: data + 'C', methodName: data }
       })
     }
@@ -21,14 +23,12 @@ class Asset {
     let callResults = await multicall.call(callInfo);
     const data = callResults.results['stabilizer']['callsReturnContext'];
     const result = {};
-    assetRequestedData.forEach((reference, index) => {
-      result[reference] = this.safeGet(data, index)
+    keys.forEach((key, index) => {
+      result[key] = safeGet(assetRequestedData[key], data, index)
     });
+
     return result;
   }
-
-  // private
-  safeGet = (data, index) => (data && data[index] && data[index].returnValues[0]);
 }
 
 module.exports = Asset;

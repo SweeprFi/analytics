@@ -10,7 +10,10 @@
     "type": "git",
     "url": "https://github.com/SweeprFi/sweepr-analytics.git"
   },
-  "keywords": ["sweep", "sweepr"],
+  "keywords": [
+    "sweep",
+    "sweepr"
+  ],
   "author": "Sweep Team",
   "license": "ISC",
   "dependencies": {
