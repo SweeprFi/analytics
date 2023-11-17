@@ -15,7 +15,27 @@ const supportedNetworks = {
   optimism: {
     rpc: "https://mainnet.optimism.io",
     alchemy: "https://opt-mainnet.g.alchemy.com/v2/"
-  }
+  },
+  base: {
+    rpc: "https://mainnet.base.org",
+    alchemy: "https://base-mainnet.g.alchemy.com/v2/"
+  },
+  // bnb: {
+  //   rpc: "https://bscrpc.com",
+  //   alchemy: ""
+  // },
+  polygon: {
+    rpc: "https://polygon.llamarpc.com",
+    alchemy: "https://polygon-mainnet.g.alchemy.com/v2/"
+  },
+  // avalanche: {
+  //   rpc: "",
+  //   alchemy: ""
+  // },
+  // celo: {
+  //   rpc: "",
+  //   alchemy: ""
+  // },
 }
 
 module.exports = {

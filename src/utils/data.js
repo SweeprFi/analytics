@@ -3,7 +3,7 @@ TYPES =>
   1: Number
   2: date
   3: seconds
-  4: address~boolean
+  4: address ~ boolean
 */
 
 const sweepRequestedData = {
@@ -61,17 +61,8 @@ const assetRequestedData = {
   auctionAllowed: { type: 4 },
 }
 
-const uniswapAssetRequestedData = {
-  token0: { type: 4 },
-  token1: { type: 4 },
-  tokenId: { type: 1, decimals: 0 },
-  sweep: { type: 4 },
-  usdx: { type: 4 },
-}
-
 module.exports = {
   sweepRequestedData,
   sweeprRequestedData,
   assetRequestedData,
-  uniswapAssetRequestedData
 }

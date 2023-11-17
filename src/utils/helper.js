@@ -7,9 +7,9 @@ const safeGet = (reference, data, index) => {
     let value = data[index].returnValues[0];
     switch (reference.type) {
       case 1:
-        return parser(parseInt(value.hex, 16), reference.decimals);
+        return parser(parseInt(value?.hex, 16), reference.decimals);
       case 2:
-        return toDate(parseInt(value.hex, 16));
+        return toDate(parseInt(value?.hex, 16));
       case 3:
         return value/(60*60*24);
       default:
@@ -20,6 +20,7 @@ const safeGet = (reference, data, index) => {
 }
 
 const parser = (v, d, p = 5) => {
+  if(!v) return 0;
   return Number((v / (10 ** d)).toFixed(p));
 }
 
