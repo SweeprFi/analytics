@@ -23,10 +23,7 @@ class AMM {
         reference: 'amm',
         contractAddress: ammAddress,
         abi: ammABI,
-        calls: [
-          { reference: 'price', methodName: 'getPrice' },
-          { reference: 'position', methodName: 'getPositions', methodParameters: [tokenId] }
-        ]
+        calls: [{ reference: 'position', methodName: 'getPositions', methodParameters: [tokenId] }]
       }
     ]
 
@@ -35,8 +32,7 @@ class AMM {
     const ammData = callResults.results['amm']['callsReturnContext'];
 
     const target = safeGet({ type: 1, decimals: 6 }, sweepData, 0);
-    const price = safeGet({ type: 1, decimals: 6 }, ammData, 0);
-    const position = ammData[1] && ammData[1].returnValues || [0,0,0];
+    const position = ammData[0] && ammData[0].returnValues || [0,0,0];
 
     // TODO: remove fixed decimals
     const usdxPosition = parser(parseInt(position[0]?.hex, 16), 6);
@@ -44,7 +40,6 @@ class AMM {
     const lpPosition = parser(parseInt(position[2]?.hex, 16), 18);
 
     return {
-      ammPrice: price,
       position: {
         usdxAmount: usdxPosition,
         sweepAmount: sweepPosition,

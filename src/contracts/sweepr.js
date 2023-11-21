@@ -49,6 +49,12 @@ class Sweepr {
     const balance = await sweepr.balanceOf(account);
     return { balance: format(balance) }
   }
+
+  async getTotalSupply(network) {
+    const sweep = this.sweepr(network);
+    const totalSupply = await sweep.totalSupply();
+    return { totalSupply: format(totalSupply) }
+  }
 }
 
 module.exports = Sweepr;

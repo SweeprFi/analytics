@@ -25,7 +25,7 @@ const parser = (v, d, p = 5) => {
 }
 
 const format = (value, p = 5) => {
-  return Number(Number(ethers.formatUnits(value,18)).toFixed(p));
+  return Number(Number(ethers.utils.formatUnits(value,18)).toFixed(p));
 }
 
 const toDate = (value) => {

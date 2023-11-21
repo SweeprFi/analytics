@@ -6,35 +6,43 @@ const addresses = {
 const supportedNetworks = {
   mainnet: {
     rpc: "https://ethereum.publicnode.com",
-    alchemy: "https://eth-mainnet.alchemyapi.io/v2/"
+    alchemy: "https://eth-mainnet.alchemyapi.io/v2/",
+    chainId: 1
   },
   arbitrum: {
     rpc: "https://arb1.arbitrum.io/rpc",
-    alchemy: "https://arb-mainnet.g.alchemy.com/v2/"
+    alchemy: "https://arb-mainnet.g.alchemy.com/v2/",
+    chainId: 42161
   },
   optimism: {
     rpc: "https://mainnet.optimism.io",
-    alchemy: "https://opt-mainnet.g.alchemy.com/v2/"
+    alchemy: "https://opt-mainnet.g.alchemy.com/v2/",
+    chainId: 10
   },
   base: {
     rpc: "https://mainnet.base.org",
-    alchemy: "https://base-mainnet.g.alchemy.com/v2/"
+    alchemy: "https://base-mainnet.g.alchemy.com/v2/",
+    chainId: 8453
   },
   // bnb: {
   //   rpc: "https://bscrpc.com",
   //   alchemy: ""
+  //   chainId: 1
   // },
   polygon: {
     rpc: "https://polygon.llamarpc.com",
-    alchemy: "https://polygon-mainnet.g.alchemy.com/v2/"
+    alchemy: "https://polygon-mainnet.g.alchemy.com/v2/",
+    chainId: 137
   },
   // avalanche: {
   //   rpc: "",
-  //   alchemy: ""
+  //   alchemy: "",
+  //   chainId: 1
   // },
   // celo: {
   //   rpc: "",
-  //   alchemy: ""
+  //   alchemy: "",
+  //   chainId: 1
   // },
 }
 
