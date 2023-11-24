@@ -11,7 +11,7 @@ const safeGet = (reference, data, index) => {
       case 2:
         return toDate(parseInt(value?.hex, 16));
       case 3:
-        return value/(60*60*24);
+        return value/(86400); // 60*60*24
       default:
         return value;
     }
@@ -24,8 +24,8 @@ const parser = (v, d, p = 5) => {
   return Number((v / (10 ** d)).toFixed(p));
 }
 
-const format = (value, p = 5) => {
-  return Number(Number(ethers.utils.formatUnits(value,18)).toFixed(p));
+const format = (value, d = 18, p = 5) => {
+  return Number(Number(ethers.formatUnits(value,d)).toFixed(p));
 }
 
 const toDate = (value) => {

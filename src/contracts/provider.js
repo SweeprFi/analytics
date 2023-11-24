@@ -14,7 +14,7 @@ class Provider {
   initProviders() {
     Object.keys(supportedNetworks).forEach(net => {
       const rpc = supportedNetworks[net].rpc;
-      this.alchemyProviders[net] = new ethers.providers.JsonRpcProvider(rpc);
+      this.alchemyProviders[net] = new ethers.JsonRpcProvider(rpc);
       this.rpcsProviders[net] = rpc;
       this.chainIds[net] = supportedNetworks[net].chainId;
     });
@@ -24,7 +24,7 @@ class Provider {
     if (!!supportedNetworks[name]) {
       const newRPC = supportedNetworks[name].alchemy + key;
       this.rpcsProviders[name] = newRPC;
-      this.alchemyProviders[name] = new ethers.providers.JsonRpcProvider(newRPC);
+      this.alchemyProviders[name] = new ethers.JsonRpcProvider(newRPC);
     }
   }
 

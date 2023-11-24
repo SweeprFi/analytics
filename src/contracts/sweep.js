@@ -1,5 +1,4 @@
 const { ethers } = require("ethers");
-const { BalancerSDK } = require("@balancer-labs/sdk");
 
 const sweepABI = require("../abis/sweep.json");
 const { addresses } = require("../utils/constants");
@@ -80,15 +79,22 @@ class Sweep {
     return { isValidMinter };
   }
 
-  async getPrice(network, poolId, token) {
-    const RPC = this.provider.getRPCProvider(network);
-    const chainId = this.provider.getChain(network);
-    const balancer = new BalancerSDK({ network: chainId, rpcUrl: RPC });
+  async getPrice(network) {
+    const sweep = this.sweep(network);
+    const ammPrice = await sweep.ammPrice();
+    return { ammPrice: format(ammPrice, 6) };
+  }
 
-    const pool = await balancer.pools.find(poolId);
-    const spotPrice = await pool.calcSpotPrice(token, this.address);
+  async getTWAPrice(network) {
+    const sweep = this.sweep(network);
+    const price = await sweep.twaPrice();
+    return { twaPrice: format(price, 6) };
+  }
 
-    return { ammPrice: Number(Number(spotPrice).toFixed(5)) }
+  async getTargetPrice(network) {
+    const sweep = this.sweep(network);
+    const target = await sweep.targetPrice();
+    return { targetPrice: format(target, 6) };
   }
 }
 
