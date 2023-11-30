@@ -1,6 +1,6 @@
 {
   "name": "sweepr-analytics",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Package to fetch data from the Sweep protocol",
   "main": "index.js",
   "scripts": {

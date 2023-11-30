@@ -34,11 +34,11 @@ const supportedNetworks = {
     alchemy: "https://polygon-mainnet.g.alchemy.com/v2/",
     chainId: 137
   },
-  // avalanche: {
-  //   rpc: "",
-  //   alchemy: "",
-  //   chainId: 1
-  // },
+  avalanche: {
+    rpc: "https://api.avax.network/ext/bc/C/rpc",
+    alchemy: "https://api.avax.network/ext/bc/C/rpc",
+    chainId: 43114
+  },
   // celo: {
   //   rpc: "",
   //   alchemy: "",
