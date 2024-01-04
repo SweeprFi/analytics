@@ -35,7 +35,8 @@ class AMM {
     const position = ammData[0] && ammData[0].returnValues || [0,0,0];
 
     // TODO: remove fixed decimals
-    const usdxPosition = parser(parseInt(position[0]?.hex, 16), 6);
+    const usdcDecimals = network === 'bsc' ? 18 : 6;
+    const usdxPosition = parser(parseInt(position[0]?.hex, 16), usdcDecimals);
     const sweepPosition = parser(parseInt(position[1]?.hex, 16), 18);
     const lpPosition = parser(parseInt(position[2]?.hex, 16), 18);
 

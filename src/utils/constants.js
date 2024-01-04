@@ -24,11 +24,6 @@ const supportedNetworks = {
     alchemy: "https://base-mainnet.g.alchemy.com/v2/",
     chainId: 8453
   },
-  // bnb: {
-  //   rpc: "https://bscrpc.com",
-  //   alchemy: ""
-  //   chainId: 1
-  // },
   polygon: {
     rpc: "https://polygon.llamarpc.com",
     alchemy: "https://polygon-mainnet.g.alchemy.com/v2/",
@@ -38,6 +33,11 @@ const supportedNetworks = {
     rpc: "https://api.avax.network/ext/bc/C/rpc",
     alchemy: "https://api.avax.network/ext/bc/C/rpc",
     chainId: 43114
+  },
+  bsc: {
+    rpc: "https://bsc-dataseed.binance.org/",
+    alchemy: "https://bsc-mainnet.core.chainstack.com/",
+    chainId: 56
   },
   // celo: {
   //   rpc: "",
