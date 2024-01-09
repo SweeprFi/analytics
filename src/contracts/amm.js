@@ -23,7 +23,9 @@ class AMM {
         reference: 'amm',
         contractAddress: ammAddress,
         abi: ammABI,
-        calls: [{ reference: 'position', methodName: 'getPositions', methodParameters: [tokenId] }]
+        calls: tokenId.map((id, index) => {
+          return { reference: `position${index}`, methodName: 'getPositions', methodParameters: [id] }
+        })
       }
     ]
 
@@ -32,13 +34,13 @@ class AMM {
     const ammData = callResults.results['amm']['callsReturnContext'];
 
     const target = safeGet({ type: 1, decimals: 6 }, sweepData, 0);
-    const position = ammData[0] && ammData[0].returnValues || [0,0,0];
+    const position = ammData.length > 0 ? ammData : [];
 
     // TODO: remove fixed decimals
-    const usdcDecimals = network === 'bsc' ? 18 : 6;
-    const usdxPosition = parser(parseInt(position[0]?.hex, 16), usdcDecimals);
-    const sweepPosition = parser(parseInt(position[1]?.hex, 16), 18);
-    const lpPosition = parser(parseInt(position[2]?.hex, 16), 18);
+    const dec = network === 'bsc' ? 18 : 6;
+    const usdxPosition = this.sum(position, 0, dec);
+    const sweepPosition = this.sum(position, 1, 18);
+    const lpPosition = this.sum(position, 2, 18);
 
     return {
       position: {
@@ -48,6 +50,15 @@ class AMM {
         sweepValue: (sweepPosition * target)
       }
     };
+  }
+
+  sum = (positions, index, decimals) => {
+    var total = 0;
+    positions.forEach(position => {
+      total += parser(parseInt(position?.returnValues[index]?.hex, 16), decimals)
+    });
+
+    return total;
   }
 }
 
