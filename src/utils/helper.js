@@ -12,6 +12,8 @@ const safeGet = (reference, data, index) => {
         return toDate(parseInt(value?.hex, 16));
       case 3:
         return value/(86400); // 60*60*24
+      case 4:
+        return !!value;
       default:
         return value;
     }

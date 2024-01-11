@@ -3,7 +3,8 @@ TYPES =>
   1: Number
   2: date
   3: seconds
-  4: address ~ boolean
+  4: boolean
+  4: address
 */
 
 const sweepRequestedData = {
@@ -34,14 +35,14 @@ const sweeprRequestedData = {
 }
 
 const assetRequestedData = {
-  borrower: { type: 4 },
+  borrower: { type: 5 },
   sweepBorrowed: { type: 1, decimals: 18 },
   loanLimit: { type: 1, decimals: 18 },
   currentValue: { type: 1, decimals: 6 },
   assetValue: { type: 1, decimals: 6 },
   getEquityRatio: { type: 1, decimals: 6 },
   getJuniorTrancheValue: { type: 1, decimals: 6 },
-  name: { type: 4 },
+  name: { type: 5 },
   getDebt: { type: 1, decimals: 18 },
   accruedFee: { type: 1, decimals: 18 },
   minEquityRatio: { type: 1, decimals: 6 },
