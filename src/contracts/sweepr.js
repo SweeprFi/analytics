@@ -55,6 +55,12 @@ class Sweepr {
     const totalSupply = await sweep.totalSupply();
     return { totalSupply: format(totalSupply) }
   }
+
+  async getTotalMinted(network) {
+    const sweep = this.sweepr(network);
+    const totalMinted = await sweep.totalMinted();
+    return { totalMinted: format(totalMinted) }
+  }
 }
 
 module.exports = Sweepr;
