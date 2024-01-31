@@ -4,6 +4,7 @@ const Asset = require("./src/contracts/asset");
 const Sweep = require("./src/contracts/sweep");
 const AMM = require("./src/contracts/amm");
 const Vesting = require("./src/contracts/vesting");
+const MarketMaker = require("./src/contracts/market");
 
 const index = {
     Provider,
@@ -12,6 +13,7 @@ const index = {
     Sweep,
     AMM,
     Vesting,
+    MarketMaker,
 }
 
 module.exports = index
