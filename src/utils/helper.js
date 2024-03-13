@@ -13,7 +13,7 @@ const safeGet = (reference, data, index) => {
       case 3:
         return value?.hex ? parseInt(value?.hex, 16)/(86400) : 0; // 60*60*24
       case 4:
-        return !!value;
+        return (!!value).toString();
       default:
         return value;
     }

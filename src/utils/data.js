@@ -4,7 +4,7 @@ TYPES =>
   2: date
   3: seconds
   4: boolean
-  4: address
+  5: address ~ string
 */
 
 const sweepRequestedData = {
