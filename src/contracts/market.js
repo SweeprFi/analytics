@@ -13,9 +13,9 @@ class MarketMaker {
     return new ethers.Contract(address, this.abi, provider);
   }
 
-  async getPositions(network, address) {
+  async getPositions(network, address, grow) {
     const multicall = this.provider.getMulticall(network);
-    const keys = ['tradePosition', 'growPosition', 'redeemPosition'];
+    const keys = grow ? ['tradePosition', 'redeemPosition', 'growPosition'] : ['tradePosition', 'redeemPosition'];
     const callInfo = {
       reference: 'market',
       contractAddress: address,
