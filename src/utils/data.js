@@ -62,8 +62,16 @@ const assetRequestedData = {
   auctionAllowed: { type: 4 },
 }
 
+const dealRequestedData = {
+  claimedAmount: { type: 1, decimals: 18, label: "SlaimedAmount" },
+  stakedAmount: { type: 1, decimals: 18, label: "StakedAmount" },
+  ownerOf: { type: 5, label: "Owner" },
+  getTokenBoundAccount: { type: 5, label: "TokenBoundAccount" }
+}
+
 module.exports = {
   sweepRequestedData,
   sweeprRequestedData,
   assetRequestedData,
+  dealRequestedData,
 }

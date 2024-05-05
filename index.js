@@ -5,6 +5,7 @@ const Sweep = require("./src/contracts/sweep");
 const AMM = require("./src/contracts/amm");
 const Vesting = require("./src/contracts/vesting");
 const MarketMaker = require("./src/contracts/market");
+const DealNFT = require("./src/contracts/deal");
 
 const index = {
     Provider,
@@ -14,6 +15,7 @@ const index = {
     AMM,
     Vesting,
     MarketMaker,
+    DealNFT,
 }
 
 module.exports = index
