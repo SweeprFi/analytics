@@ -84,7 +84,8 @@ const dealsRequestedData = {
   totalClaimed: { type: 1, decimals: 18 },
   totalStaked: { type: 1, decimals: 18 },
   twitter: { type: 5 },
-  web: { type: 5 }
+  web: { type: 5 },
+  name: { type: 5 },
 }
 
 module.exports = {
