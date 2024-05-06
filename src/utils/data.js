@@ -69,9 +69,28 @@ const dealRequestedData = {
   getTokenBoundAccount: { type: 5, label: "TokenBoundAccount" }
 }
 
+const dealsRequestedData = {
+  closingDate: { type: 2 },
+  closingDelay: { type: 1, decimals: 0 }, // { type: 2 },
+  closingPeriod: { type: 1, decimals: 0 }, // { type: 2 },
+  dealMaximum: { type: 1, decimals: 18 },
+  dealMinimum: { type: 1, decimals: 18 },
+  description: { type: 5 },
+  escrowToken: { type: 5 },
+  nextId: { type: 1, decimals: 0 },
+  nftURI: { type: 5 },
+  sponsor: { type: 5 },
+  state: { type: 5 },
+  totalClaimed: { type: 1, decimals: 18 },
+  totalStaked: { type: 1, decimals: 18 },
+  twitter: { type: 5 },
+  web: { type: 5 }
+}
+
 module.exports = {
   sweepRequestedData,
   sweeprRequestedData,
   assetRequestedData,
   dealRequestedData,
+  dealsRequestedData
 }

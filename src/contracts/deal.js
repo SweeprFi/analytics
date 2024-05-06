@@ -1,7 +1,7 @@
 const { ethers } = require("ethers");
 const dealABI = require("../abis/deal.json");
 const { safeGet } = require("../utils/helper");
-const { dealRequestedData } = require("../utils/data");
+const { dealRequestedData, dealsRequestedData } = require("../utils/data");
 
 class DealNFT {
   constructor(provider) {
@@ -32,6 +32,29 @@ class DealNFT {
     const result = {};
     keys.forEach((key, index) => {
       result[dealRequestedData[key].label] = safeGet(dealRequestedData[key], data, index)
+    });
+
+    return result;
+  }
+
+  async getDealData(network, address) {
+    const result = {};
+    const multicall = this.provider.getMulticall(network);
+    const keys = Object.keys(dealsRequestedData);
+    const callInfo = {
+      reference: 'deals',
+      contractAddress: address,
+      abi: this.abi,
+      calls: keys.map(data => {
+        return { reference: data + 'C', methodName: data }
+      })
+    }
+
+    let callResults = await multicall.call(callInfo);
+    const data = callResults.results['deals']['callsReturnContext'];
+
+    keys.forEach((key, index) => {
+      result[key] = safeGet(dealsRequestedData[key], data, index)
     });
 
     return result;
