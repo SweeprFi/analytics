@@ -71,10 +71,10 @@ const dealRequestedData = {
 
 const dealsRequestedData = {
   closingDate: { type: 2 },
-  closingDelay: { type: 1, decimals: 0 }, // { type: 2 },
-  closingPeriod: { type: 1, decimals: 0 }, // { type: 2 },
-  dealMaximum: { type: 1, decimals: 18 },
-  dealMinimum: { type: 1, decimals: 18 },
+  closingDelay: { type: 1, decimals: 0 },
+  closingPeriod: { type: 1, decimals: 0 },
+  dealMaximum: { type: 1, decimals: 0 },
+  dealMinimum: { type: 1, decimals: 0 },
   description: { type: 5 },
   escrowToken: { type: 5 },
   nextId: { type: 1, decimals: 0 },
