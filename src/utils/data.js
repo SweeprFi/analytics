@@ -89,9 +89,9 @@ const dealsRequestedData = {
 }
 
 const tokenRequestData = {
-  symbol: { type: 5, label: "scrowSymbol" },
-  name: { type: 5, label: "scrowName" },
-  decimals: { type: 5, label: "scrowDecimals" }
+  symbol: { type: 5, label: "escrowSymbol" },
+  name: { type: 5, label: "escrowName" },
+  decimals: { type: 5, label: "escrowDecimals" }
 }
 
 module.exports = {
