@@ -88,10 +88,17 @@ const dealsRequestedData = {
   name: { type: 5 },
 }
 
+const tokenRequestData = {
+  symbol: { type: 5, label: "scrowSymbol" },
+  name: { type: 5, label: "scrowName" },
+  decimals: { type: 5, label: "scrowDecimals" }
+}
+
 module.exports = {
   sweepRequestedData,
   sweeprRequestedData,
   assetRequestedData,
   dealRequestedData,
-  dealsRequestedData
+  dealsRequestedData,
+  tokenRequestData
 }

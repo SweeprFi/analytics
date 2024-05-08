@@ -2,7 +2,11 @@ const { ethers } = require("ethers");
 const dealABI = require("../abis/deal.json");
 const tokenABI = require("../abis/erc20.json");
 const { safeGet } = require("../utils/helper");
-const { dealRequestedData, dealsRequestedData } = require("../utils/data");
+const {
+  dealRequestedData,
+  dealsRequestedData,
+  tokenRequestData
+} = require("../utils/data");
 
 class DealNFT {
   constructor(provider) {
@@ -46,9 +50,9 @@ class DealNFT {
 
     const deal = this.deal(network, address);
     const nextId = await deal.nextId();
-    const scrow = await deal.escrowToken();
-    const token = this.token(network, scrow);
-    const decimals = Number(await token.decimals());
+    const scrowAddress = await deal.escrowToken();
+    const tokenData = await this._getTokenScrowData(network, scrowAddress);
+    const decimals = tokenData.scrowDecimals;
 
     const promises = [];
     for (let index = 0; index < nextId; index++) {
@@ -60,7 +64,7 @@ class DealNFT {
       result[key] = safeGet(dealsRequestedData[key], data, index, decimals)
     });
 
-    return {...result, claimed };
+    return {...result, ...tokenData, claimed };
   }
 
   async getNextId(network, address) {
@@ -89,7 +93,33 @@ class DealNFT {
       result[dealRequestedData[key].label] = safeGet(dealRequestedData[key], data, index, decimals)
     });
 
+    result.nftId = id;
+
     return result;
+  }
+
+  async _getTokenScrowData(network, address) {
+    const multicall = this.provider.getMulticall(network);
+    const keys = Object.keys(tokenRequestData);
+    const callInfo = {
+      reference: 'token',
+      contractAddress: address,
+      abi: tokenABI,
+      calls: keys.map(data => {
+        return { reference: data + 'C', methodName: data }
+      })
+    }
+
+    let callResults = await multicall.call(callInfo);
+    const data = callResults.results['token']['callsReturnContext'];
+
+    const result = {};
+    keys.forEach((key, index) => {
+      result[tokenRequestData[key].label] = safeGet(tokenRequestData[key], data, index)
+    });
+
+    return result;
+
   }
 }
 
