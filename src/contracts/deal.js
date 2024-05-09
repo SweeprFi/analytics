@@ -50,9 +50,9 @@ class DealNFT {
 
     const deal = this.deal(network, address);
     const nextId = await deal.nextId();
-    const scrowAddress = await deal.escrowToken();
-    const tokenData = await this._getTokenScrowData(network, scrowAddress);
-    const decimals = tokenData.scrowDecimals;
+    const escrowAddress = await deal.escrowToken();
+    const tokenData = await this._getTokenScrowData(network, escrowAddress);
+    const decimals = tokenData.escrowDecimals;
 
     const promises = [];
     for (let index = 0; index < nextId; index++) {

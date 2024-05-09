@@ -70,7 +70,7 @@ const dealRequestedData = {
 }
 
 const dealsRequestedData = {
-  closingDate: { type: 2 },
+  closingTime: { type: 2 },
   closingDelay: { type: 1, decimals: 0 },
   closingPeriod: { type: 1, decimals: 0 },
   dealMaximum: { type: 1, decimals: 0 },
@@ -78,7 +78,6 @@ const dealsRequestedData = {
   description: { type: 5 },
   escrowToken: { type: 5 },
   nextId: { type: 1, decimals: 0 },
-  nftURI: { type: 5 },
   sponsor: { type: 5 },
   state: { type: 5 },
   totalClaimed: { type: 1, decimals: 18 },
@@ -86,6 +85,7 @@ const dealsRequestedData = {
   twitter: { type: 5 },
   web: { type: 5 },
   name: { type: 5 },
+  symbol: { type: 5 },
 }
 
 const tokenRequestData = {
