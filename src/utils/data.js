@@ -71,7 +71,7 @@ const dealRequestedData = {
 
 const dealsRequestedData = {
   closingTime: { type: 2 },
-  closingDelay: { type: 1, decimals: 0 },
+  closingDelay: { type: 2 },
   closingPeriod: { type: 1, decimals: 0 },
   dealMaximum: { type: 1, decimals: 0 },
   dealMinimum: { type: 1, decimals: 0 },
@@ -86,6 +86,7 @@ const dealsRequestedData = {
   web: { type: 5 },
   name: { type: 5 },
   symbol: { type: 5 },
+  image: { type: 5 },
 }
 
 const tokenRequestData = {
