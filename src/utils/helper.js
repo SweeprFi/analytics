@@ -15,6 +15,8 @@ const safeGet = (reference, data, index, decimals) => {
         return value?.hex ? parseInt(value?.hex, 16)/(86400) : 0; // 60*60*24
       case 4:
         return (!!value).toString();
+      case 5:
+        return Number(parseInt(value?.hex, 16));
       default:
         return value;
     }

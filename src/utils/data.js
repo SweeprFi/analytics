@@ -4,7 +4,8 @@ TYPES =>
   2: date
   3: seconds
   4: boolean
-  5: address ~ string
+  5: Number without formating
+  6: address ~ string
 */
 
 const sweepRequestedData = {
@@ -35,14 +36,14 @@ const sweeprRequestedData = {
 }
 
 const assetRequestedData = {
-  borrower: { type: 5 },
+  borrower: { type: 6 },
   sweepBorrowed: { type: 1, decimals: 18 },
   loanLimit: { type: 1, decimals: 18 },
   currentValue: { type: 1, decimals: 6 },
   assetValue: { type: 1, decimals: 6 },
   getEquityRatio: { type: 1, decimals: 6 },
   getJuniorTrancheValue: { type: 1, decimals: 6 },
-  name: { type: 5 },
+  name: { type: 6 },
   getDebt: { type: 1, decimals: 18 },
   accruedFee: { type: 1, decimals: 18 },
   minEquityRatio: { type: 1, decimals: 6 },
@@ -65,34 +66,34 @@ const assetRequestedData = {
 const dealRequestedData = {
   claimedAmount: { type: 1, decimals: 18, label: "ClaimedAmount" },
   stakedAmount: { type: 1, decimals: 18, label: "StakedAmount" },
-  ownerOf: { type: 5, label: "Owner" },
-  getTokenBoundAccount: { type: 5, label: "TokenBoundAccount" }
+  ownerOf: { type: 6, label: "Owner" },
+  getTokenBoundAccount: { type: 6, label: "TokenBoundAccount" }
 }
 
 const dealsRequestedData = {
   closingTime: { type: 2 },
-  closingDelay: { type: 3 },
+  closingDelay: { type: 5 },
   closingPeriod: { type: 1, decimals: 0 },
   dealMaximum: { type: 1, decimals: 0 },
   dealMinimum: { type: 1, decimals: 0 },
-  description: { type: 5 },
-  escrowToken: { type: 5 },
+  description: { type: 6 },
+  escrowToken: { type: 6 },
   nextId: { type: 1, decimals: 0 },
-  sponsor: { type: 5 },
-  state: { type: 5 },
+  sponsor: { type: 6 },
+  state: { type: 6 },
   totalClaimed: { type: 1, decimals: 18 },
   totalStaked: { type: 1, decimals: 18 },
-  twitter: { type: 5 },
-  web: { type: 5 },
-  name: { type: 5 },
-  symbol: { type: 5 },
-  image: { type: 5 },
+  twitter: { type: 6 },
+  web: { type: 6 },
+  name: { type: 6 },
+  symbol: { type: 6 },
+  image: { type: 6 },
 }
 
 const tokenRequestData = {
-  symbol: { type: 5, label: "escrowSymbol" },
-  name: { type: 5, label: "escrowName" },
-  decimals: { type: 5, label: "escrowDecimals" }
+  symbol: { type: 6, label: "escrowSymbol" },
+  name: { type: 6, label: "escrowName" },
+  decimals: { type: 6, label: "escrowDecimals" }
 }
 
 module.exports = {
