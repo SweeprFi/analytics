@@ -34,9 +34,9 @@ const format = (value, d = 18, p = 5) => {
 }
 
 const toDate = (value) => {
-  if (!value || value === 0) return '-';
+  if (!value || value === 0) return '';
   const date = new Date(value * 1000);
-  if(!date.getMonth()) return '-';
+  if(!date.getMonth()) return '';
   return month[date.getMonth()] + ' ' + date.getDate() + ', ' + zeroToNum(date.getHours()) + ':' + zeroToNum(date.getMinutes());
 }
 
