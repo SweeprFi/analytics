@@ -71,7 +71,7 @@ const dealRequestedData = {
 }
 
 const dealsRequestedData = {
-  closingTime: { type: 2 },
+  closingTime: { type: 5 },
   closingDelay: { type: 5 },
   closingPeriod: { type: 1, decimals: 0 },
   dealMaximum: { type: 1, decimals: 0 },
