@@ -89,6 +89,8 @@ const dealsRequestedData = {
   image: { type: 6 },
   whitelistStakes: { type: 4 },
   whitelistClaims: { type: 4 },
+  unstakingFee: { type: 1, decimals: 6 },
+  arbitrator: { type: 6 },
 }
 
 const tokenRequestData = {
