@@ -149,6 +149,13 @@
     },
     {
         "type": "function",
+        "name": "approveClaim",
+        "inputs": [],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
         "name": "approveStaker",
         "inputs": [
             {
@@ -164,6 +171,19 @@
         ],
         "outputs": [],
         "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "arbitrator",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "address",
+                "internalType": "address"
+            }
+        ],
+        "stateMutability": "view"
     },
     {
         "type": "function",
@@ -197,6 +217,19 @@
         "inputs": [],
         "outputs": [],
         "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "claimApproved",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool",
+                "internalType": "bool"
+            }
+        ],
+        "stateMutability": "view"
     },
     {
         "type": "function",
@@ -273,6 +306,11 @@
                 "name": "dealMaximum_",
                 "type": "uint256",
                 "internalType": "uint256"
+            },
+            {
+                "name": "arbitrator_",
+                "type": "address",
+                "internalType": "address"
             }
         ],
         "outputs": [],
@@ -1016,6 +1054,25 @@
     },
     {
         "type": "event",
+        "name": "ClaimApproved",
+        "inputs": [
+            {
+                "name": "sponsor",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "arbitrator",
+                "type": "address",
+                "indexed": false,
+                "internalType": "address"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "type": "event",
         "name": "Configure",
         "inputs": [
             {
@@ -1047,6 +1104,12 @@
                 "type": "uint256",
                 "indexed": false,
                 "internalType": "uint256"
+            },
+            {
+                "name": "arbitrator",
+                "type": "address",
+                "indexed": false,
+                "internalType": "address"
             }
         ],
         "anonymous": false
