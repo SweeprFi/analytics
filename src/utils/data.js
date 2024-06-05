@@ -63,14 +63,14 @@ const assetRequestedData = {
   auctionAllowed: { type: 4 },
 }
 
-const dealRequestedData = {
+const stakesRequestedData = {
   claimedAmount: { type: 1, decimals: 18, label: "ClaimedAmount" },
   stakedAmount: { type: 1, decimals: 18, label: "StakedAmount" },
   ownerOf: { type: 6, label: "Owner" },
   getTokenBoundAccount: { type: 6, label: "TokenBoundAccount" }
 }
 
-const dealsRequestedData = {
+const dealRequestedData = {
   closingTime: { type: 5 },
   closingDelay: { type: 5 },
   dealMaximum: { type: 1, decimals: 0 },
@@ -99,11 +99,19 @@ const tokenRequestData = {
   decimals: { type: 6, label: "escrowDecimals" }
 }
 
+const dealCardData = {
+  name: { type: 6 },
+  image: { type: 6 },
+  state: { type: 6 },
+  description: { type: 6 },
+}
+
 module.exports = {
   sweepRequestedData,
   sweeprRequestedData,
   assetRequestedData,
+  stakesRequestedData,
   dealRequestedData,
-  dealsRequestedData,
-  tokenRequestData
+  tokenRequestData,
+  dealCardData
 }

@@ -3,9 +3,10 @@ const dealABI = require("../abis/deal.json");
 const tokenABI = require("../abis/erc20.json");
 const { safeGet } = require("../utils/helper");
 const {
+  stakesRequestedData,
   dealRequestedData,
-  dealsRequestedData,
-  tokenRequestData
+  tokenRequestData,
+  dealCardData
 } = require("../utils/data");
 
 class DealNFT {
@@ -35,7 +36,7 @@ class DealNFT {
   async getDealData(network, address) {
     const result = {};
     const multicall = this.provider.getMulticall(network);
-    const keys = Object.keys(dealsRequestedData);
+    const keys = Object.keys(dealRequestedData);
     const callInfo = {
       reference: 'deals',
       contractAddress: address,
@@ -61,10 +62,32 @@ class DealNFT {
     const claimed = await Promise.all(promises);
 
     keys.forEach((key, index) => {
-      result[key] = safeGet(dealsRequestedData[key], data, index, decimals)
+      result[key] = safeGet(dealRequestedData[key], data, index, decimals)
     });
 
     return {...result, ...tokenData, claimed };
+  }
+
+  async getDealCardData(network, address) {
+    const result = {};
+    const multicall = this.provider.getMulticall(network);
+    const keys = Object.keys(dealCardData);
+    const callInfo = {
+      reference: 'card',
+      contractAddress: address,
+      abi: this.abi,
+      calls: keys.map(data => {
+        return { reference: data + 'C', methodName: data }
+      })
+    }
+
+    let callResults = await multicall.call(callInfo);
+    const data = callResults.results['card']['callsReturnContext'];
+    keys.forEach((key, index) => {
+      result[key] = safeGet(dealCardData[key], data, index)
+    });
+
+    return result;
   }
 
   async getNextId(network, address) {
@@ -75,7 +98,7 @@ class DealNFT {
 
   async _getClaimedData(network, address, id, decimals) {
     const multicall = this.provider.getMulticall(network);
-    const keys = Object.keys(dealRequestedData);
+    const keys = Object.keys(stakesRequestedData);
     const callInfo = {
       reference: 'deal',
       contractAddress: address,
@@ -90,7 +113,7 @@ class DealNFT {
 
     const result = {};
     keys.forEach((key, index) => {
-      result[dealRequestedData[key].label] = safeGet(dealRequestedData[key], data, index, decimals)
+      result[stakesRequestedData[key].label] = safeGet(stakesRequestedData[key], data, index, decimals)
     });
 
     result.nftId = id;
