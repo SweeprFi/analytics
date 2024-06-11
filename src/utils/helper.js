@@ -2,12 +2,12 @@ const { ethers } = require("ethers");
 
 const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const safeGet = (reference, data, index, decimals) => {
+const safeGet = (reference, data, index, decimals = 6) => {
   if (data && data[index]) {
     let value = data[index].returnValues[0];
     switch (reference.type) {
       case 1:
-        const dec = decimals ? decimals : reference.decimals;
+        const dec = reference?.decimals >= 0 ? reference.decimals : decimals;
         return parser(parseInt(value?.hex, 16), dec);
       case 2:
         return toDate(parseInt(value?.hex, 16));
