@@ -87,10 +87,11 @@ const dealRequestedData = {
   name: { type: 6 },
   symbol: { type: 6 },
   image: { type: 6 },
+  arbitrator: { type: 6 },
+  unstakingFee: { type: 1, decimals: 4 },
   whitelistStakes: { type: 4 },
   whitelistClaims: { type: 4 },
-  unstakingFee: { type: 1, decimals: 6 },
-  arbitrator: { type: 6 },
+  transferrable: { type: 4 },
 }
 
 const tokenRequestData = {
