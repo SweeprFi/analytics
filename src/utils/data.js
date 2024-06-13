@@ -64,8 +64,8 @@ const assetRequestedData = {
 }
 
 const stakesRequestedData = {
-  claimedAmount: { type: 1, decimals: 18, label: "ClaimedAmount" },
-  stakedAmount: { type: 1, decimals: 18, label: "StakedAmount" },
+  claimedAmount: { type: 1, label: "ClaimedAmount" },
+  stakedAmount: { type: 1, label: "StakedAmount" },
   ownerOf: { type: 6, label: "Owner" },
   getTokenBoundAccount: { type: 6, label: "TokenBoundAccount" }
 }
