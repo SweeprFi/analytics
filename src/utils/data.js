@@ -99,6 +99,8 @@ const dealRequestedData = {
   stakersWhitelist: { type: 6 },
   claimsWhitelist: { type: 6 },
   transferable: { type: 4 },
+  price: { type: 1, decimals: 6 },
+  multiplier: { type: 5 },
 }
 
 const tokenRequestData = {
