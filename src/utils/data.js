@@ -5,8 +5,15 @@ TYPES =>
   3: seconds
   4: boolean
   5: Number without formating
-  6: address ~ string
+  6: address
+  7: string
 */
+
+const defaultData = {
+  1: 0, 2: '', 3: 0, 4: "false", 5: 0,
+  6: '0x0000000000000000000000000000000000000000',
+  7: ''
+}
 
 const sweepRequestedData = {
   ammPrice: { type: 1, decimals: 6 },
@@ -43,7 +50,7 @@ const assetRequestedData = {
   assetValue: { type: 1, decimals: 6 },
   getEquityRatio: { type: 1, decimals: 6 },
   getJuniorTrancheValue: { type: 1, decimals: 6 },
-  name: { type: 6 },
+  name: { type: 7 },
   getDebt: { type: 1, decimals: 18 },
   accruedFee: { type: 1, decimals: 18 },
   minEquityRatio: { type: 1, decimals: 6 },
@@ -79,32 +86,32 @@ const dealRequestedData = {
   totalStaked: { type: 1 },
   unstakingFee: { type: 1, decimals: 4 },
   nextId: { type: 1, decimals: 0 },
-  description: { type: 6 },
+  description: { type: 7 },
   escrowToken: { type: 6 },
   sponsor: { type: 6 },
-  state: { type: 6 },
-  twitter: { type: 6 },
-  web: { type: 6 },
-  name: { type: 6 },
-  symbol: { type: 6 },
-  image: { type: 6 },
+  state: { type: 6 }, // uint8
+  twitter: { type: 7 },
+  website: { type: 7 },
+  name: { type: 7 },
+  symbol: { type: 7 },
+  image: { type: 7 },
   arbitrator: { type: 6 },
-  whitelistStakes: { type: 4 },
-  whitelistClaims: { type: 4 },
-  transferrable: { type: 4 },
+  stakersWhitelist: { type: 6 },
+  claimsWhitelist: { type: 6 },
+  transferable: { type: 4 },
 }
 
 const tokenRequestData = {
-  symbol: { type: 6, label: "escrowSymbol" },
-  name: { type: 6, label: "escrowName" },
-  decimals: { type: 6, label: "escrowDecimals" }
+  symbol: { type: 7, label: "escrowSymbol" },
+  name: { type: 7, label: "escrowName" },
+  decimals: { type: 6, label: "escrowDecimals" } // uint8
 }
 
 const dealCardData = {
-  name: { type: 6 },
-  image: { type: 6 },
-  state: { type: 6 },
-  description: { type: 6 },
+  name: { type: 7 },
+  image: { type: 7 },
+  state: { type: 6 }, // uint8
+  description: { type: 7 },
 }
 
 module.exports = {
@@ -114,5 +121,6 @@ module.exports = {
   stakesRequestedData,
   dealRequestedData,
   tokenRequestData,
-  dealCardData
+  dealCardData,
+  defaultData
 }

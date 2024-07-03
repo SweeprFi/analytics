@@ -1,9 +1,10 @@
 const { ethers } = require("ethers");
+const { defaultData } = require("./data");
 
 const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const safeGet = (reference, data, index, decimals = 6) => {
-  if (data && data[index]) {
+  if (data && data[index] && data[index].success) {
     let value = data[index].returnValues[0];
     switch (reference.type) {
       case 1:
@@ -21,7 +22,7 @@ const safeGet = (reference, data, index, decimals = 6) => {
         return value;
     }
   }
-  return;
+  return defaultData[reference.type];
 }
 
 const parser = (v, d, p = 5) => {
