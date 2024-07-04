@@ -6,7 +6,8 @@ const {
   stakesRequestedData,
   dealRequestedData,
   tokenRequestData,
-  dealCardData
+  dealCardData,
+  decodeStakes
 } = require("../utils/data");
 
 class DealNFT {
@@ -138,6 +139,7 @@ class DealNFT {
 
     try {
       stakes = await deal.getStakesTo(nextId);
+      stakes = decodeStakes(stakes, decimals);
     } catch (error) {
       const promises = [];
       for (let index = 0; index < nextId; index++) {

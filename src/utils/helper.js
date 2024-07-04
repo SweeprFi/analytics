@@ -25,6 +25,18 @@ const safeGet = (reference, data, index, decimals = 6) => {
   return defaultData[reference.type];
 }
 
+const decodeStakes = (stakes, decimals) => {
+  return stakes.map((stake, index) => {
+    return {
+      nftId: index,
+      Owner: stake[0],
+      TokenBoundAccount: stake[1],
+      StakedAmount: parser(stake[2], decimals),
+      claimedAmount: parser(stake[3], decimals),
+    }
+  });
+}
+
 const parser = (v, d, p = 5) => {
   if(!v) return 0;
   return Number((v / (10 ** d)).toFixed(p));
@@ -45,4 +57,4 @@ const zeroToNum = (val) => {
   return ('00' + val).slice(-2);
 }
 
-module.exports = { parser, format, toDate, safeGet }
+module.exports = { parser, format, toDate, safeGet, decodeStakes }
