@@ -100,7 +100,7 @@ const dealRequestedData = {
   claimsWhitelist: { type: 6 },
   transferable: { type: 4 },
   price: { type: 1, decimals: 6 },
-  multiplier: { type: 5 },
+  multiplier: { type: 1, decimals: 18 },
 }
 
 const tokenRequestData = {
