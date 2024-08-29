@@ -39,6 +39,11 @@ const supportedNetworks = {
     alchemy: "https://bsc-mainnet.core.chainstack.com/",
     chainId: 56
   },
+  bob: {
+    rpc: "https://rpc.gobob.xyz/",
+    alchemy: "https://bob-mainnet.blastapi.io/",
+    chainId: 60808
+  },
   // celo: {
   //   rpc: "",
   //   alchemy: "",
